@@ -401,7 +401,17 @@ For issues and questions:
 - GitHub Issues: Create an issue in this repository
 - Email: noumohope@gmail.com
 
-## License
+## Screenshots
+<img width="1004" height="708" alt="Screenshot 2026-01-27 at 19 06 03" src="https://github.com/user-attachments/assets/73fa2b30-454a-46ee-a257-2d88fc4ac953" />
+<img width="1007" height="745" alt="Screenshot 2026-01-27 at 19 06 20" src="https://github.com/user-attachments/assets/10fca18b-fe4d-419a-a1a6-329390cc1ecc" />
+<img width="992" height="728" alt="Screenshot 2026-01-27 at 19 06 57" src="https://github.com/user-attachments/assets/027fdfe7-6602-4ab6-812f-6224c5641a6b" />
+<img width="1265" height="566" alt="Screenshot 2026-01-29 at 17 21 13" src="https://github.com/user-attachments/assets/6b0a2933-bdbd-4d9a-af18-b5b747b99aee" />
+<img width="1114" height="453" alt="Screenshot 2026-01-29 at 17 22 33" src="https://github.com/user-attachments/assets/64358515-63dc-489b-bfec-8f5c65b965b8" />
+
+
+
+
+
 
 GNU GPL V3
 
