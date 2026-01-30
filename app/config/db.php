@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=DB_NAME',
-    'username' => 'DB_USER',
-    'password' => 'DB_PASSWORD',
+    'dsn' => 'mysql:host=' . (getenv('DB_HOST') ?: 'localhost') . ';dbname=' . (getenv('DB_NAME') ?: 'DB_NAME'),
+    'username' => getenv('DB_USER') ?: 'DB_USER',
+    'password' => getenv('DB_PASSWORD') ?: 'DB_PASSWORD',
     'charset' => 'utf8',
     'tablePrefix' => '',
     'enableSchemaCache' => true,

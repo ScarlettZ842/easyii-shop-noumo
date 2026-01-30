@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: easyii-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: easyii_shop
+      MYSQL_USER: easyii_user
+      MYSQL_PASSWORD: easyii_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - easyii-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-proot_password",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PHP-Apache Service
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: easyii-web
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./:/var/www/html
+      - ./docker/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./docker/apache/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=easyii_shop
+      - DB_USER=easyii_user
+      - DB_PASSWORD=easyii_pass
+    networks:
+      - easyii-network
+
+  # PHPMyAdmin Service (Optional - for database management)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: easyii-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8081:80"
+    networks:
+      - easyii-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  easyii-network:
+    driver: bridge

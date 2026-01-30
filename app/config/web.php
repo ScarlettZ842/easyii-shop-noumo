@@ -15,7 +15,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => '3e45c1140ff50da898b23c97184a4fb954ba8ff9d9cbd1466a64281ffeb2986a',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -25,6 +25,8 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => true, // Set to false for production
+            'fileTransportPath' => '@runtime/mail',
         ],
         'urlManager' => [
             'rules' => [
